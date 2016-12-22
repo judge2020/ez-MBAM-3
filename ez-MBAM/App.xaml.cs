@@ -13,5 +13,9 @@ namespace ez_MBAM
 	/// </summary>
 	public partial class App : Application
 	{
+		private void App_OnExit(object sender, ExitEventArgs e)
+		{
+			ez_MBAM.MainWindow.WhenExit();
+		}
 	}
 }
