@@ -112,6 +112,7 @@
     <Content Include="activation218.exe" />
     <Content Include="khg.wav" />
     <Content Include="mbam218.exe" />
+    <None Include="mbam3.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
