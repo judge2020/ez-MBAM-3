@@ -34,7 +34,7 @@ namespace ez_MBAM
 			InitializeComponent();
 			var maintimer = new Timer(1000) {AutoReset = true};
 			maintimer.Elapsed += MaintimerOnElapsed;
-			_khgSound.Stop();
+			_khgSound.Stop(); 
 
 		} 
 
