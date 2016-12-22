@@ -35,7 +35,7 @@ namespace ez_MBAM
 			var maintimer = new Timer(1000) {AutoReset = true};
 			maintimer.Elapsed += MaintimerOnElapsed;
 			_khgSound.Stop(); 
-
+		
 		} 
 
 		private void MaintimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
