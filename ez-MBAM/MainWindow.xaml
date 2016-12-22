@@ -5,9 +5,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ez_MBAM"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="ez MBAM 3" Height="350" Width="525">
-    <Grid>
-        
+        Title="ez MBAM 3" Height="350" Width="765">
+    <Grid Margin="0,0,2,3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="131*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="button" Content="Install 2.1.8" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1"/>
+        <Button x:Name="button2" Content="upgrade to V.3" HorizontalAlignment="Left" Margin="380,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1"/>
+        <Button x:Name="button_Copy1" Content="Exit and enjoy MBAM 3" HorizontalAlignment="Left" Margin="565,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1"/>
+        <Button x:Name="button_Copy2" Content="Crack 2.1.8" HorizontalAlignment="Left" Margin="195,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1"/>
+        <Label x:Name="labelTitle" Content="EZ-MBAM" HorizontalAlignment="Left" Margin="195,0,0,0" VerticalAlignment="Top" Height="106" Width="365" FontSize="72" Controls:ControlsHelper.ContentCharacterCasing="Upper" HorizontalContentAlignment="Center"/>
+        <Label x:Name="label" Content="Status:" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" Height="48" Width="180" HorizontalContentAlignment="Right" FontSize="22" Grid.RowSpan="2"/>
+        <Label x:Name="Status_label" Content="Scanning for Malwarebytes settings..." HorizontalAlignment="Left" Margin="195,144,0,0" VerticalAlignment="Top" Width="560" Height="48" FontSize="22" Grid.RowSpan="2"/>
+        <CheckBox x:Name="checkBox" Content="KHG music?" HorizontalAlignment="Left" Margin="658,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.069,-1.722" Height="22" Width="90" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
+
     </Grid>
 </Controls:MetroWindow>
