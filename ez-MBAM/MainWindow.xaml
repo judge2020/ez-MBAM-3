@@ -20,7 +20,11 @@
         <Label x:Name="labelTitle" Content="EZ-MBAM" HorizontalAlignment="Left" Margin="195,0,0,0" VerticalAlignment="Top" Height="106" Width="365" FontSize="72" Controls:ControlsHelper.ContentCharacterCasing="Upper" HorizontalContentAlignment="Center"/>
         <Label x:Name="label" Content="Status:" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Height="48" Width="180" HorizontalContentAlignment="Right" FontSize="22"/>
         <Label x:Name="Status_label" Content="Scanning for Malwarebytes settings..." HorizontalAlignment="Left" Margin="195,125,0,0" VerticalAlignment="Top" Width="560" Height="48" FontSize="22"/>
-        <CheckBox x:Name="checkBox" Content="KHG music?" HorizontalAlignment="Left" Margin="658,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.069,-1.722" Height="22" Width="90" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
+        <CheckBox x:Name="checkBox" Content="KHG music" HorizontalAlignment="Left" Margin="658,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.069,-1.722" Height="22" Width="90" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
+        <Label x:Name="installLabel4" Content="Recommended" HorizontalAlignment="Left" Margin="568,8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" HorizontalContentAlignment="Center" Foreground="#FF37CB3E"/>
+        <Label x:Name="installLabel2" Content="Recommended" HorizontalAlignment="Left" Margin="195,8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" HorizontalContentAlignment="Center" Foreground="#FF37CB3E"/>
+        <Label x:Name="installLabel3" Content="Recommended" HorizontalAlignment="Left" Margin="380,8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" HorizontalContentAlignment="Center" Foreground="#FF37CB3E"/>
+        <Label x:Name="installLabel1" Content="Recommended" HorizontalAlignment="Left" Margin="10,8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" HorizontalContentAlignment="Center" Foreground="#FF37CB3E"/>
 
     </Grid>
 </Controls:MetroWindow>

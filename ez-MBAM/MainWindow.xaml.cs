@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Timers;
 using System.Windows;
+using System.Windows.Threading;
 using Path = System.IO.Path;
 
 namespace ez_MBAM
@@ -20,8 +22,18 @@ namespace ez_MBAM
 		public MainWindow()
 		{
 			InitializeComponent();
-			var maintimer = new Timer(1000) {AutoReset = true};
-			maintimer.Elapsed += MaintimerOnElapsed;
+
+			installLabel1.Content = "";
+			installLabel2.Content = "";
+			installLabel3.Content = "";
+			installLabel4.Content = "";
+
+			var distimer = new DispatcherTimer();
+			distimer.Interval = new TimeSpan(0, 0, 0, 2);
+			distimer.Tick += DistimerOnTick;
+			distimer.Start();
+			distimer.IsEnabled = true;
+
 			_khgSound.Stop();
 
 			try
@@ -34,15 +46,36 @@ namespace ez_MBAM
 			{
 				// ignored
 			}
-		} 
-
-		private void MaintimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
-		{
-			if (Directory.Exists(@"C:\Program Files\Malwarebytes"))
-			{
-				Status_label.Content = "Malwarebyted 3 Found!";
-			}
 		}
+
+		private void DistimerOnTick(object sender, EventArgs eventArgs)
+		{
+			if(Directory.Exists(@"C:\Program Files\Malwarebytes"))
+			{
+				Status_label.Content = "Found MBAM v3!";
+				installLabel1.Content = "";
+				installLabel2.Content = "";
+				installLabel3.Content = "";
+				installLabel4.Content = "Recommended";
+
+			}
+			if(Directory.Exists(@"C:\Program Files (x86)\Malwarebytes Anti-Malware"))
+			{
+				Status_label.Content = "Found MBAM v2!";
+				installLabel1.Content = "";
+				installLabel2.Content = "Recommended";
+				installLabel3.Content = "Recommended";
+				installLabel4.Content = "";
+			}
+			else
+			{
+				Status_label.Content = "Could not find an installation of MBAM.";
+				installLabel1.Content = "Recommended";
+				installLabel2.Content = "";
+				installLabel3.Content = "";
+				installLabel4.Content = "";
+			}
+		} 
 
 		private void checkBox_Checked(object sender, RoutedEventArgs e)
 		{
