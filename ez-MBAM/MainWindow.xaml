@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Button x:Name="button" Content="Install 2.1.8" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1" Click="button_Click"/>
         <Button x:Name="button2" Content="upgrade to V.3" HorizontalAlignment="Left" Margin="380,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1" Click="button2_Click"/>
-        <Button x:Name="button_Copy1" Content="Exit and enjoy MBAM 3" HorizontalAlignment="Left" Margin="565,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1"/>
+        <Button x:Name="button_Copy1" Content="Exit and enjoy MBAM 3" HorizontalAlignment="Left" Margin="565,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1" Click="button_Copy1_Click"/>
         <Button x:Name="button_Copy2" Content="Crack 2.1.8" HorizontalAlignment="Left" Margin="195,34,0,0" VerticalAlignment="Top" Width="180" Height="100" Grid.Row="1" Click="button_Copy2_Click"/>
         <Label x:Name="labelTitle" Content="EZ-MBAM" HorizontalAlignment="Left" Margin="195,0,0,0" VerticalAlignment="Top" Height="106" Width="365" FontSize="72" Controls:ControlsHelper.ContentCharacterCasing="Upper" HorizontalContentAlignment="Center"/>
         <Label x:Name="label" Content="Status:" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Height="48" Width="180" HorizontalContentAlignment="Right" FontSize="22"/>

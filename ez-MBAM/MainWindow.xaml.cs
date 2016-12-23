@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Media;
-using System.Timers;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Path = System.IO.Path;
 
 namespace ez_MBAM
@@ -28,8 +29,7 @@ namespace ez_MBAM
 			installLabel3.Content = "";
 			installLabel4.Content = "";
 
-			var distimer = new DispatcherTimer();
-			distimer.Interval = new TimeSpan(0, 0, 0, 2);
+			var distimer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0, 2)};
 			distimer.Tick += DistimerOnTick;
 			distimer.Start();
 			distimer.IsEnabled = true;
@@ -89,40 +89,79 @@ namespace ez_MBAM
 			_khgSound.Stop();
 		}
 
-		private void button_Click(object sender, RoutedEventArgs e)
+		private async void button_Click(object sender, RoutedEventArgs ev)
 		{
-			using(FileStream fsDst = new FileStream(MbamexeName, FileMode.CreateNew, FileAccess.Write))
+			try
 			{
-				byte[] bytes = Properties.Resources.mbam218;
+				using(FileStream fsDst = new FileStream(MbamexeName, FileMode.CreateNew, FileAccess.Write))
+				{
+					byte[] bytes = Properties.Resources.mbam218;
 
-				fsDst.Write(bytes, 0, bytes.Length);
-				fsDst.Close();
+					fsDst.Write(bytes, 0, bytes.Length);
+					fsDst.Close();
+				}
+				Process.Start(MbamexeName);
 			}
-			Process.Start(MbamexeName);
+			catch(Exception e)
+			{
+
+				var dialogResult = await Error();
+				if(dialogResult == MessageDialogResult.Affirmative)
+				{
+					var url = "https://github.com/judge2020/ez-MBAM-3/issues/new?title=Crash Report&body=" + e.Message + " | Stacktrace: " + e.StackTrace;
+					Process.Start(url);
+				}
+			}
 		}
 
-		private void button_Copy2_Click(object sender, RoutedEventArgs e)
+		private async void button_Copy2_Click(object sender, RoutedEventArgs ev)
 		{
-			using(FileStream fsDst = new FileStream(ActivationExeName, FileMode.CreateNew, FileAccess.Write))
+			try
 			{
-				byte[] bytes = Properties.Resources.activation218;
+				using(FileStream fsDst = new FileStream(ActivationExeName, FileMode.CreateNew, FileAccess.Write))
+				{
+					byte[] bytes = Properties.Resources.activation218;
 
-				fsDst.Write(bytes, 0, bytes.Length);
-				fsDst.Close();
+					fsDst.Write(bytes, 0, bytes.Length);
+					fsDst.Close();
+				}
+				Process.Start(ActivationExeName);
 			}
-			Process.Start(ActivationExeName);
+			catch(Exception e)
+			{
+
+				var dialogResult = await Error();
+				if(dialogResult == MessageDialogResult.Affirmative)
+				{
+					var url = "https://github.com/judge2020/ez-MBAM-3/issues/new?title=Crash Report&body=" + e.Message + " | Stacktrace: " + e.StackTrace;
+					Process.Start(url);
+				}
+			}
 		}
 
-		private void button2_Click(object sender, RoutedEventArgs e)
+		private async void button2_Click(object sender, RoutedEventArgs ev)
 		{
-			using(FileStream fsDst = new FileStream(Mbam3ExeName, FileMode.CreateNew, FileAccess.Write))
+			try
 			{
-				byte[] bytes = Properties.Resources.mbam3;
+				using(FileStream fsDst = new FileStream(Mbam3ExeName, FileMode.CreateNew, FileAccess.Write))
+				{
+					byte[] bytes = Properties.Resources.mbam3;
 
-				fsDst.Write(bytes, 0, bytes.Length);
-				fsDst.Close();
+					fsDst.Write(bytes, 0, bytes.Length);
+					fsDst.Close();
+				}
+				Process.Start(Mbam3ExeName);
 			}
-			Process.Start(Mbam3ExeName);
+			catch(Exception e)
+			{
+
+				var dialogResult = await Error();
+				if(dialogResult == MessageDialogResult.Affirmative)
+				{
+					var url = "https://github.com/judge2020/ez-MBAM-3/issues/new?title=Crash Report&body=" + e.Message + " | Stacktrace: " + e.StackTrace;
+					Process.Start(url);
+				}
+			}
 		}
 
 		public static void WhenExit()
@@ -130,6 +169,29 @@ namespace ez_MBAM
 			File.Delete(MbamexeName);
 			File.Delete(ActivationExeName);
 			File.Delete(Mbam3ExeName);
+		}
+
+
+		private static async Task<MessageDialogResult> Error()
+		{
+			MetroDialogSettings messaSettings = new MetroDialogSettings
+			{
+				AffirmativeButtonText = "Send report",
+				NegativeButtonText = "don't send"
+			};
+			return await ShowMessageAsync("An error occured!", "Would you like to send the crash report?", MessageDialogStyle.AffirmativeAndNegative, messaSettings);
+		}
+
+
+		private static async Task<MessageDialogResult> ShowMessageAsync(string title, string message, MessageDialogStyle style = MessageDialogStyle.Affirmative, MetroDialogSettings settings = null)
+		{
+			return await ( (MetroWindow)( Application.Current.MainWindow ) ).ShowMessageAsync(title, message, style, settings);
+		}
+
+		private void button_Copy1_Click(object sender, RoutedEventArgs e)
+		{
+			WhenExit();
+			Environment.Exit(0);
 		}
 	}
 }
