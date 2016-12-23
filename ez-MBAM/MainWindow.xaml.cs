@@ -186,10 +186,27 @@ namespace ez_MBAM
 			return await ( (MetroWindow)( Application.Current.MainWindow ) ).ShowMessageAsync(title, message, style, settings);
 		}
 
-		private void button_Copy1_Click(object sender, RoutedEventArgs e)
+		private async void button_Copy1_Click(object sender, RoutedEventArgs ev)
 		{
-			WhenExit();
-			Environment.Exit(0);
+			//block hosts file
+			try
+			{
+				string hosts = @"C:\Windows\System32\drivers\etc\hosts";
+				StreamWriter sw = new StreamWriter(hosts);
+				sw.WriteLine(@"#ez-mbam host file block. Do not remove");
+				sw.WriteLine(@"0.0.0.0 keystone.mwbsys.com");
+				sw.Close();
+
+			}
+			catch (Exception e)
+			{
+				var dialogResult = await Error();
+				if(dialogResult == MessageDialogResult.Affirmative)
+				{
+					var url = "https://github.com/judge2020/ez-MBAM-3/issues/new?title=Crash Report&body=" + e.Message + " | Stacktrace: " + e.StackTrace;
+					Process.Start(url);
+				}
+			}
 		}
 	}
 }
