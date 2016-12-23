@@ -22,7 +22,9 @@ namespace ez_MBAM
 		static readonly string Mbam3ExeName = Path.Combine(Path.GetTempPath(), "mbam3.exe");
 		public MainWindow()
 		{
-			InitializeComponent();
+			try
+			{
+				InitializeComponent();
 
 			installLabel1.Content = "";
 			installLabel2.Content = "";
@@ -36,15 +38,19 @@ namespace ez_MBAM
 
 			_khgSound.Stop();
 
-			try
-			{
+			
 				File.Delete(MbamexeName);
 				File.Delete(ActivationExeName);
 				File.Delete(Mbam3ExeName);
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
-				// ignored
+				var dialogResult = Task.Run(Error);
+				if(dialogResult.Result == MessageDialogResult.Affirmative)
+				{
+					var url = "https://github.com/judge2020/ez-MBAM-3/issues/new?title=Crash Report&body=" + e.Message + " | Stacktrace: " + e.StackTrace;
+					Process.Start(url);
+				}
 			}
 		}
 
@@ -77,17 +83,9 @@ namespace ez_MBAM
 			}
 		} 
 
-		private void checkBox_Checked(object sender, RoutedEventArgs e)
-		{
-			_khgSound.PlayLooping();	
+		private void checkBox_Checked(object sender, RoutedEventArgs e) => _khgSound.PlayLooping();
 
-			
-		}
-
-		private void checkBox_Unchecked(object sender, RoutedEventArgs e)
-		{
-			_khgSound.Stop();
-		}
+		private void checkBox_Unchecked(object sender, RoutedEventArgs e) => _khgSound.Stop();
 
 		private async void button_Click(object sender, RoutedEventArgs ev)
 		{
